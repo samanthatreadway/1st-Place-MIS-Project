@@ -1,0 +1,44 @@
+@model fa25group23final.Models.CreditCard
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CreditCard</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="ID" value="@ViewBag.ID" />
+
+            <div class="form-group">
+                <label asp-for="CardNumber" class="control-label"></label>
+                <input asp-for="CardNumber" class="form-control" />
+                <span asp-validation-for="CardNumber" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="CardType" class="control-label"></label>
+                <select asp-for="CardType" class="form-control"></select>
+                <span asp-validation-for="CardType" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <label asp-for="CardType" class="control-label"></label>
+                <select asp-for="CardType" asp-items="Html.GetEnumSelectList<CreditCardTypeEnum>()" class="form-control"></select>
+                <span asp-validation-for="CardType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
