@@ -1,0 +1,243 @@
+@model fa25group23final.Models.ViewModels.Orders.ShoppingCartViewModel
+@inject fa25group23final.DAL.AppDbContext Context
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+    
+    // Get active shipping config
+    var shippingConfig = ViewData["ShippingConfig"] as fa25group23final.Models.Shippingconfig;
+    // Calculate totals using the view model method
+    var totals = Model.CalculateTotals(shippingConfig);
+    var shipping = totals.Shipping;
+    var total = totals.Total;
+}
+
+<h1>Shopping Cart</h1>
+
+@* Display any messages (price changes, items removed, stock issues, etc.) *@
+@if (Model.Messages.Any())
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <h5><i class="fas fa-info-circle"></i> Cart Updates:</h5>
+        <ul class="mb-0">
+            @foreach (var message in Model.Messages)
+            {
+                <li>@message</li>
+            }
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@* Display TempData messages *@
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="fas fa-info-circle"></i> @TempData["InfoMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (!Model.Items.Any())
+{
+    <div class="alert alert-warning" role="alert">
+        <h4><i class="fas fa-shopping-cart"></i> Your shopping cart is empty</h4>
+        <p>Browse our selection and add items to your cart.</p>
+        <a asp-controller="Books" asp-action="Index" class="btn btn-primary">
+            <i class="fas fa-book"></i> Browse Books
+        </a>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-shopping-cart"></i> Cart Items (@Model.ItemCount @(Model.ItemCount == 1 ? "book" : "books"))
+                    </h5>
+                </div>
+                <div class="card-body">
+                    @foreach (var item in Model.Items)
+                    {
+                        var book = item.bookID;
+                        <div class="row mb-4 pb-3 border-bottom">
+                            <div class="col-lg-3 col-md-12 mb-3 mb-lg-0">
+                                @* Book image placeholder - replace with actual image if you have one *@
+                                <div class="bg-light text-center p-3 rounded">
+                                    <i class="fas fa-book fa-4x text-secondary"></i>
+                                    <p class="small text-muted mt-2 mb-0">@book.Title</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5 col-md-6 mb-3 mb-lg-0">
+                                <p class="mb-1"><strong>@book.Title</strong></p>
+                                <p class="text-muted mb-1">by @book.Authors</p>
+                                <p class="text-muted mb-2">
+                                    <small>Book #@book.BookNumber</small>
+                                </p>
+                                
+                                <p class="text-muted mb-2">
+                                    <small>
+                                        <i class="fas fa-warehouse"></i> 
+                                        @if (book.InventoryQuantity > 10)
+                                        {
+                                            <span class="text-success">In Stock (@book.InventoryQuantity available)</span>
+                                        }
+                                        else if (book.InventoryQuantity > 0)
+                                        {
+                                            <span class="text-warning">Limited Stock (@book.InventoryQuantity left)</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-danger">Out of Stock</span>
+                                        }
+                                    </small>
+                                </p>
+
+                                @* Remove from cart button *@
+                                <form asp-action="RemoveFromCart" method="post" class="d-inline">
+                                    <input type="hidden" name="orderDetailsId" value="@item.OrderDetailsID" />
+                                    <button type="submit" class="btn btn-link btn-sm text-danger p-0" 
+                                            onclick="return confirm('Are you sure you want to remove this item?')">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="mb-3">
+                                    <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center">
+                                        <input type="hidden" name="orderDetailsId" value="@item.OrderDetailsID" />
+                                        
+                                        <label class="me-2 mb-0">Qty:</label>
+                                        <input type="number" 
+                                               name="quantity" 
+                                               value="@item.Quantity" 
+                                               min="1" 
+                                               max="@book.InventoryQuantity"
+                                               class="form-control form-control-sm" 
+                                               style="width: 70px;" />
+                                        
+                                        <button type="submit" class="btn btn-primary btn-sm ms-2">
+                                            Update
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="text-end">
+                                    <p class="mb-1">
+                                        <strong>@item.Price.ToString("C")</strong> each
+                                    </p>
+                                    <p class="text-primary mb-0">
+                                        <strong>Subtotal: @((item.Price * item.Quantity).ToString("C"))</strong>
+                                    </p>
+                                </div>
+
+                                @if (item.Quantity > book.InventoryQuantity)
+                                {
+                                    <div class="alert alert-warning py-1 px-2 mt-2 small" role="alert">
+                                        Only @book.InventoryQuantity available in stock
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <a asp-controller="Books" asp-action="Index" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left"></i> Continue Shopping
+            </a>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0"><i class="fas fa-calculator"></i> Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            <span>Subtotal (@Model.ItemCount @(Model.ItemCount == 1 ? "item" : "items"))</span>
+                            <span><strong>@Model.Subtotal.ToString("C")</strong></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0 border-0">
+                            <div>
+                                <strong>Shipping</strong>
+                                @if (shippingConfig != null)
+                                {
+                                    <div class="small text-muted">
+                                        @shippingConfig.FirstBookFee.ToString("C") for first book<br />
+                                        @shippingConfig.AdditionalBookFee.ToString("C") for each additional
+                                    </div>
+                                }
+                            </div>
+                            <span><strong>@shipping.ToString("C")</strong></span>
+                        </li>
+                        
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pt-3 border-top">
+                            <div>
+                                <strong class="fs-5">Total</strong>
+                                <div class="small text-muted">Sales tax included</div>
+                            </div>
+                            <span class="fs-5"><strong class="text-primary">@total.ToString("C")</strong></span>
+                        </li>
+                    </ul>
+
+                    <a asp-controller="Orders" asp-action="Checkout" class="btn btn-success btn-lg w-100 mt-3">
+                        <i class="fas fa-credit-card"></i> Proceed to Checkout
+                    </a>
+                    
+                    <div class="mt-3 text-center small text-muted">
+                        <i class="fas fa-lock"></i> Secure Checkout
+                    </div>
+                </div>
+            </div>
+
+            @* Shipping Information Card *@
+            @if (shippingConfig != null)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title"><i class="fas fa-shipping-fast"></i> Shipping Information</h6>
+                        <p class="card-text small text-muted mb-0">
+                            <i class="fas fa-check-circle text-success"></i> 
+                            Items ship as soon as order is placed
+                        </p>
+                        <p class="card-text small text-muted mb-0">
+                            <i class="fas fa-dollar-sign text-success"></i> 
+                            Shipping: @shippingConfig.FirstBookFee.ToString("C") + @shippingConfig.AdditionalBookFee.ToString("C")/book
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        // Auto-dismiss alerts after 5 seconds
+        setTimeout(function() {
+            $('.alert').fadeOut('slow');
+        }, 5000);
+    </script>
+}

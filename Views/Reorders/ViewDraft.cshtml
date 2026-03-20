@@ -1,0 +1,122 @@
+@model List<fa25group23final.Models.ReorderDetails>
+
+@{
+    ViewData["Title"] = "Draft Reorder";
+}
+
+<h2>Book Procurement - Reorder Cart</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="mb-3">
+    <a asp-controller="Books" asp-action="Index" class="btn btn-primary">Browse Books to Add</a>
+    <a asp-action="Index" class="btn btn-secondary">View Current Orders</a>
+    <a asp-action="AutoReorder" class="btn btn-warning">Auto Reorder</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        <p class="mb-0">Your reorder cart is empty.</p>
+        <p class="mb-0 mt-2">
+            <a asp-controller="Books" asp-action="Index" class="alert-link">Browse books</a> and click "Reorder" to manually building your book procurement order.
+        </p>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Items in Cart</h5>
+            <span class="badge bg-secondary">@Model.Count item(s)</span>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Book</th>
+                        <th>Inventory</th>
+                        <th>Quantity</th>
+                        <th>Cost/Unit</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@item.Book.Title</strong><br />
+                                <small class="text-muted">@item.Book.Authors</small>
+                            </td>
+                            <td>
+                                @item.Book.InventoryQuantity
+                                @if (item.Book.InventoryQuantity < item.Book.ReorderPoint)
+                                {
+                                    <span class="badge bg-warning text-dark">Low</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="UpdateDraftItem" method="post" class="d-inline">
+                                    <input type="hidden" name="reorderDetailsId" value="@item.ReorderDetailsID" />
+                                    <input type="hidden" name="cost" value="@item.Cost" />
+                                    <input type="number" name="quantity" value="@item.QuantityOrdered" min="1" 
+                                           class="form-control form-control-sm d-inline-block" style="width: 70px;" 
+                                           onchange="this.form.submit()" />
+                                </form>
+                            </td>
+                            <td>
+                                <form asp-action="UpdateDraftItem" method="post" class="d-inline">
+                                    <input type="hidden" name="reorderDetailsId" value="@item.ReorderDetailsID" />
+                                    <input type="hidden" name="quantity" value="@item.QuantityOrdered" />
+                                    <div class="input-group input-group-sm" style="width: 100px;">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" name="cost" value="@item.Cost" min="0.01" step="0.01" 
+                                               class="form-control" onchange="this.form.submit()" />
+                                    </div>
+                                </form>
+                            </td>
+                            <td>@((item.Cost * item.QuantityOrdered).ToString("C"))</td>
+                            <td>
+                                <form asp-action="RemoveFromDraft" method="post" class="d-inline">
+                                    <input type="hidden" name="reorderDetailsId" value="@item.ReorderDetailsID" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr class="table-secondary">
+                        <td colspan="2"><strong>Total</strong></td>
+                        <td><strong>@Model.Sum(i => i.QuantityOrdered) books</strong></td>
+                        <td></td>
+                        <td><strong>@Model.Sum(i => i.Cost * i.QuantityOrdered).ToString("C")</strong></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="card-footer">
+            <form asp-action="PlaceDraftOrder" method="post">
+                <button type="submit" class="btn btn-primary btn-lg">Place Order</button>
+                <a asp-controller="Books" asp-action="Index" class="btn btn-outline-secondary">Add More Books</a>
+            </form>
+        </div>
+    </div>
+}

@@ -1,0 +1,113 @@
+@model fa25group23final.Models.CreditCard
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!--<h1>Create</h1>
+
+<h4>CreditCard</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
+@*<input type="hidden" name="ID" value="@ViewBag.ID" />*@
+
+<!--<div class="form-group">
+    <label asp-for="CardNumber" class="control-label"></label>
+    <input asp-for="CardNumber" class="form-control" />
+    <span asp-validation-for="CardNumber" class="text-danger"></span>
+</div>-->
+@*<div class="form-group">
+        <label asp-for="CardType" class="control-label"></label>
+        <select asp-for="CardType" class="form-control"></select>
+        <span asp-validation-for="CardType" class="text-danger"></span>
+    </div>*@
+
+<!--<div class="form-group">
+                <label asp-for="CardType" class="control-label"></label>
+                <select asp-for="CardType" asp-items="Html.GetEnumSelectList<CreditCardTypeEnum>()" class="form-control"></select>
+                <span asp-validation-for="CardType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>-->
+
+<h1 class="mb-4 text-center">Add a New Credit Card</h1>
+
+<div class="d-flex justify-content-center">
+    <div class="card shadow-sm create-card p-4">
+        <div class="card-body">
+
+            <h4 class="text-center mb-4">Credit Card Information</h4>
+
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <input type="hidden" name="ID" value="@ViewBag.ID" />
+
+                <!-- Card Number -->
+                <div class="mb-3">
+                    <label asp-for="CardNumber" class="form-label fw-semibold"></label>
+                    <input asp-for="CardNumber" class="form-control" />
+                    <span asp-validation-for="CardNumber" class="text-danger"></span>
+                </div>
+
+                <!-- Card Type -->
+                <div class="mb-4">
+                    <label asp-for="CardType" class="form-label fw-semibold"></label>
+                    <select asp-for="CardType"
+                            asp-items="Html.GetEnumSelectList<CreditCardTypeEnum>()"
+                            class="form-control"></select>
+                    <span asp-validation-for="CardType" class="text-danger"></span>
+                </div>
+
+                <!-- Create button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Create Card</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-3">
+    <a asp-action="Index" class="text-decoration-none">Back to List</a>
+</div>
+
+<style>
+    .create-card {
+        max-width: 450px;
+        width: 100%;
+        border-radius: 15px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+        .create-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+        }
+
+        .create-card input,
+        .create-card select {
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .create-card .btn {
+            border-radius: 8px;
+            padding: 0.6rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+</style>

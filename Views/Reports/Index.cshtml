@@ -1,0 +1,177 @@
+@{
+    ViewData["Title"] = "Reports Dashboard";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">
+                <i class="bi bi-graph-up"></i> Reports Dashboard
+            </h1>
+            <p class="lead text-muted">Select a report to view business analytics and insights</p>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Report A -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="bi bi-book text-primary"></i> All Books Sold
+                    </h5>
+                    <p class="card-text">
+                        View detailed transaction-level data for every book sold, including profit margins and customer information.
+                    </p>
+                    <ul class="small text-muted">
+                        <li>Sort by date, profit margin, price, popularity</li>
+                        <li>Filter by customer, book, genre, date range</li>
+                        <li>Weighted average cost tracking</li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a asp-action="BooksSold" class="btn btn-primary w-100">
+                        View Report <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report B -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="bi bi-cart text-success"></i> All Orders
+                    </h5>
+                    <p class="card-text">
+                        Analyze complete order data grouped by order number, showing total revenue and profit per order.
+                    </p>
+                    <ul class="small text-muted">
+                        <li>Sort by date, profit margin, order total</li>
+                        <li>Filter by customer, date range</li>
+                        <li>Order-level profit analysis</li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a asp-action="Orders" class="btn btn-success w-100">
+                        View Report <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report C -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="bi bi-people text-info"></i> All Customers
+                    </h5>
+                    <p class="card-text">
+                        Customer lifetime value analysis with aggregated revenue, profit margins, and purchase history.
+                    </p>
+                    <ul class="small text-muted">
+                        <li>Sort by revenue, profit margin, name</li>
+                        <li>Customer lifetime metrics</li>
+                        <li>Identify top customers</li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a asp-action="Customers" class="btn btn-info w-100">
+                        View Report <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report D -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="bi bi-currency-dollar text-warning"></i> Totals
+                    </h5>
+                    <p class="card-text">
+                        High-level summary showing total revenue, cost, and profit for the entire business.
+                    </p>
+                    <ul class="small text-muted">
+                        <li>Total revenue across all orders</li>
+                        <li>Total cost of goods sold</li>
+                        <li>Overall profit margin percentage</li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a asp-action="Totals" class="btn btn-warning w-100">
+                        View Report <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report E -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="bi bi-box-seam text-danger"></i> Current Inventory
+                    </h5>
+                    <p class="card-text">
+                        Track current inventory levels with weighted average costs and total inventory value.
+                    </p>
+                    <ul class="small text-muted">
+                        <li>Books currently in stock</li>
+                        <li>Weighted average cost per book</li>
+                        <li>Total inventory value calculation</li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a asp-action="Inventory" class="btn btn-danger w-100">
+                        View Report <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report F -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="bi bi-star text-secondary"></i> Employee Reviews
+                    </h5>
+                    <p class="card-text">
+                        Track employee performance in reviewing and approving/rejecting customer book reviews.
+                    </p>
+                    <ul class="small text-muted">
+                        <li>Sort by employee ID, review counts</li>
+                        <li>Approved vs. rejected metrics</li>
+                        <li>Employee approval rates</li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a asp-action="EmployeeReviews" class="btn btn-secondary w-100">
+                        View Report <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h5 class="alert-heading">
+                    <i class="bi bi-info-circle"></i> Report Notes
+                </h5>
+                <ul class="mb-0">
+                    <li>All reports exclude shipping fees from profit calculations (shipping is cost-neutral)</li>
+                    <li>Profit margins use weighted average costs for accurate calculations</li>
+                    <li>Only completed orders are included in reports</li>
+                    <li>Record counts are shown for all reports</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

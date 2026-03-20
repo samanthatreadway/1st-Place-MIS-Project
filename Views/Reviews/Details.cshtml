@@ -1,0 +1,66 @@
+@model fa25group23final.Models.Reviews
+
+@{
+    ViewData["Title"] = "Review Details";
+    // Do NOT set Layout = null; this allows _Layout.cshtml (with Bootstrap) to be used
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Review Details</h4>
+        </div>
+
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3 fw-bold">
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">
+                    @Html.DisplayNameFor(model => model.ReviewText)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ReviewText)
+                </dd>
+
+                @*<dt class="col-sm-3 fw-bold">
+                    @Html.DisplayNameFor(model => model.DisputeStatus)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.DisputeStatus)
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">
+                    Reviewer
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.reviewer.Id)
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">
+                    Approver
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.approver.Id)
+                </dd>*@
+            </dl>
+
+            <div class="mt-4">
+                @*<a asp-action="Edit"
+                   asp-route-id="@Model?.ReviewID"
+                   class="btn btn-warning me-2">
+                    Edit
+                </a>*@
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

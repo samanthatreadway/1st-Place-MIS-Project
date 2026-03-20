@@ -1,0 +1,82 @@
+﻿@*@{
+    ViewData["Title"] = "Employee Dashboard";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Employee Dashboard</h3>
+        </div>
+
+        <div class="card-body">
+
+            @* Extra safety: if a non-employee somehow hits this view *@
+            @if (!User.IsInRole("Employee") && !User.IsInRole("Admin"))
+            {
+                <div class="alert alert-danger mt-3">
+                    You are not authorized to view this page.
+                </div>
+            }
+            else
+            {
+                <p class="text-muted mb-4">
+                    Welcome, @User.Identity?.Name! Use the tools below to manage customers,
+                    reviews, and your own employee account.
+                </p>
+
+                <div class="row g-3">
+
+                    <!-- Modify My Employee Account -->
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded bg-light h-100">
+                            <h5>My Employee Account</h5>
+                            <p class="text-muted small">
+                                Update your street address, phone number, and password.
+                            </p>
+
+                            <a asp-controller="Home"
+                               asp-action="UserDashboard"
+                               class="btn btn-primary w-100">
+                                Manage My Account
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Manage Customers -->
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded bg-light h-100">
+                            <h5>Manage Customers</h5>
+                            <p class="text-muted small">
+                                Create and modify customers, and enable or disable accounts.
+                            </p>
+
+                            <a asp-controller="Account"
+                               asp-action="ManageCustomers"
+                               class="btn btn-secondary w-100">
+                                Manage Customers
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Approve / Reject Reviews -->
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded bg-light h-100">
+                            <h5>Review Approval</h5>
+                            <p class="text-muted small">
+                                Approve or reject pending customer reviews
+                            </p>
+
+                            <a asp-controller="Reviews"
+                               asp-action="ApproveReviews"
+                               class="btn btn-warning w-100">
+                                Approve / Reject Reviews
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

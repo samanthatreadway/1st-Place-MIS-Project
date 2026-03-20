@@ -1,0 +1,120 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<RoleEditModel>
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+@*<h2>Index</h2>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Roles</div>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Users</th>
+                <th></th>
+            </tr>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="4" class="text-center">No roles</td>
+                </tr>
+            }
+            else
+            {
+                foreach (RoleEditModel role in Model)
+                {
+                    <tr>
+                        <td>@role.Role.Id</td>
+                        <td>@role.Role.Name</td>
+                        <td>
+                            @if (role.RoleMembers == null || role.RoleMembers.Count() == 0)
+                            {
+                                @: No Users in role
+                            }
+                            else
+                            {
+                                <p>@string.Join(", ", role.RoleMembers.Select(x => x.Email))</p>
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = role.Role.Id }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>*@
+@*@Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })*@
+
+
+
+<h2 class="mb-4">Roles</h2>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Role Management</h5>
+            @*<a asp-action="Create" class="btn btn-sm btn-light">Create Role</a>*@
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 18%;">ID</th>
+                    <th style="width: 22%;">Name</th>
+                    <th style="width: 45%;">Users</th>
+                    <th style="width: 15%;" class="text-end">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null || !Model.Any())
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">No roles found.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var roleModel in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">@roleModel.Role?.Id</td>
+                            <td class="align-middle">@roleModel.Role?.Name</td>
+
+                            <td class="align-middle">
+                                @if (roleModel?.RoleMembers == null || !roleModel.RoleMembers.Any())
+                                {
+                                    <span class="text-muted fst-italic">No users in this role</span>
+                                }
+                                else
+                                {
+                                    <!-- show emails as badges, wrapping nicely -->
+                                    <div class="d-flex flex-wrap gap-1">
+                                        @foreach (var u in roleModel.RoleMembers)
+                                        {
+                                            <span class="badge rounded-pill border bg-transparent text-dark" style="max-width:200px;">
+                                                @u?.Email
+                                            </span>
+                                        }
+                                    </div>
+                                }
+                            </td>
+
+                            <td class="text-end align-middle">
+                                <a asp-action="Edit" asp-route-id="@roleModel.Role?.Id" class="btn btn-sm btn-primary me-1">Edit</a>
+                                @*<a asp-action="Details" asp-route-id="@roleModel.Role?.Id" class="btn btn-sm btn-outline-secondary">Details</a>*@
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,114 @@
+@model fa25group23final.Models.Coupon
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!--<h1>Create</h1>
+
+<h4>Coupon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateFinal">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
+@*@Html.ValidationSummary()*@
+<!--<div class="form-group">
+    <label asp-for="CouponCode" class="control-label"></label>
+    <input asp-for="CouponCode" class="form-control" />
+    <span asp-validation-for="CouponCode" class="text-danger"></span>
+</div>
+<div class="form-group">-->
+@*<label asp-for="CouponType" class="control-label"></label>
+    <select asp-for="CouponType" class="form-control"></select>
+    <span asp-validation-for="CouponType" class="text-danger"></span>*@
+
+<!--<label asp-for="CouponType" class="control-label"></label><br />-->
+    @*<input type="radio" class="radio" asp-for="CouponType" value="@CouponTypeEnum.Discount" checked="checked" />Discount<br />*@
+    @*<input type="radio" class="radio" asp-for="CouponType" value="@CouponTypeEnum.FreeShipping" />Free Shipping<br />*@
+
+<!--</div>-->
+@*<div class="form-group">
+        <label asp-for="DiscountPercent" class="control-label"></label>
+        <input asp-for="DiscountPercent" class="form-control" />
+        <span asp-validation-for="DiscountPercent" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FreeThreshold" class="control-label"></label>
+        <input asp-for="FreeThreshold" class="form-control" />
+        <span asp-validation-for="FreeThreshold" class="text-danger"></span>
+    </div>*@
+@*<div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+        </label>
+    </div>*@
+<!--<div class="form-group">
+                <input type="submit" value="Next Page" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>-->
+
+<div class="container mt-5">
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Create New Coupon</h4>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="CreateFinal">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- Coupon Code -->
+                <div class="mb-3">
+                    <label asp-for="CouponCode" class="form-label fw-semibold"></label>
+                    <input asp-for="CouponCode" class="form-control" placeholder="Enter coupon code" />
+                    <span asp-validation-for="CouponCode" class="text-danger small"></span>
+                </div>
+
+                <!-- Coupon Type (Radio Buttons) -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Coupon Type</label>
+
+                    <div class="form-check">
+                        <input type="radio" asp-for="CouponType" value="@CouponTypeEnum.Discount"
+                               class="form-check-input" checked />
+                        <label class="form-check-label">Discount</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="radio" asp-for="CouponType" value="@CouponTypeEnum.FreeShipping"
+                               class="form-check-input" />
+                        <label class="form-check-label">Free Shipping</label>
+                    </div>
+
+                    <span asp-validation-for="CouponType" class="text-danger small"></span>
+                </div>
+
+                <!-- Submit -->
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary px-4">
+                        Next Page
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            Back to List
+        </a>
+    </div>
+
+</div>

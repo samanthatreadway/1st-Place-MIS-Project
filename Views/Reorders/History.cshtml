@@ -1,0 +1,88 @@
+@model List<fa25group23final.Models.Reorders>
+
+@{
+    ViewData["Title"] = "Reorder History";
+}
+
+<h2>Reorder History</h2>
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to Pending Orders</a>
+    <a asp-action="AutoReorder" class="btn btn-primary">Auto Reorder</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No reorder history found.
+    </div>
+}
+else
+{
+    @foreach (var reorder in Model)
+    {
+        bool isComplete = reorder.ReorderDetails.All(rd => rd.QuantityReceived >= rd.QuantityOrdered);
+        <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>
+                    <strong>Order #@reorder.ReorderID</strong> - @reorder.OrderDate?.ToString("MM/dd/yyyy")
+                </span>
+                @if (isComplete)
+                {
+                    <span class="badge bg-success">Complete</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning text-dark">Pending</span>
+                }
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Book</th>
+                            <th>Qty Ordered</th>
+                            <th>Qty Received</th>
+                            <th>Cost/Unit</th>
+                            <th>Total Cost</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var detail in reorder.ReorderDetails)
+                        {
+                            bool itemComplete = detail.QuantityReceived >= detail.QuantityOrdered;
+                            <tr>
+                                <td>@detail.Book.Title</td>
+                                <td>@detail.QuantityOrdered</td>
+                                <td>@detail.QuantityReceived</td>
+                                <td>@detail.Cost.ToString("C")</td>
+                                <td>@((detail.Cost * detail.QuantityOrdered).ToString("C"))</td>
+                                <td>
+                                    @if (itemComplete)
+                                    {
+                                        <span class="text-success">✓ Received</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-warning">Pending (@(detail.QuantityOrdered - detail.QuantityReceived) remaining)</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr class="table-secondary">
+                            <td><strong>Total</strong></td>
+                            <td><strong>@reorder.ReorderDetails.Sum(rd => rd.QuantityOrdered)</strong></td>
+                            <td><strong>@reorder.ReorderDetails.Sum(rd => rd.QuantityReceived)</strong></td>
+                            <td></td>
+                            <td><strong>@reorder.ReorderDetails.Sum(rd => rd.Cost * rd.QuantityOrdered).ToString("C")</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    }
+}

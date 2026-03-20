@@ -1,0 +1,399 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = fa25group23final
+build_property.RootNamespace = fa25group23final
+build_property.ProjectDir = /Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9DaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/ConfirmFire.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Db25maXJtRmlyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/CustomerDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9DdXN0b21lckRldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/CustomerEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9DdXN0b21lckVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/EmployeeDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9FbXBsb3llZURldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/EmployeeEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9FbXBsb3llZUVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/ManageCustomers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9NYW5hZ2VDdXN0b21lcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/ManageEmployees.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9NYW5hZ2VFbXBsb3llZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/RegisterCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3RlckN1c3RvbWVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Account/RegisterEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3RlckVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Books/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va3MvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Books/DetailedSearch.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va3MvRGV0YWlsZWRTZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Books/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va3MvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Books/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va3MvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Books/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va3MvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Coupon/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cG9uL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Coupon/CreateDiscount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cG9uL0NyZWF0ZURpc2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Coupon/CreateShipping.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cG9uL0NyZWF0ZVNoaXBwaW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Coupon/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cG9uL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Coupon/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cG9uL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Coupon/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cG9uL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Coupon/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cG9uL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/CreditCard/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3JlZGl0Q2FyZC9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/CreditCard/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3JlZGl0Q2FyZC9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/CreditCard/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3JlZGl0Q2FyZC9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/CreditCard/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3JlZGl0Q2FyZC9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/CreditCard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3JlZGl0Q2FyZC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Genres/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2VucmVzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Genres/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2VucmVzL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Genres/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2VucmVzL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Genres/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2VucmVzL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Genres/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2VucmVzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Home/AdminDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BZG1pbkRhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Home/EmployeeDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FbXBsb3llZURhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Home/MeetTheTeam.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9NZWV0VGhlVGVhbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Home/UserDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Vc2VyRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/OrderDetails/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJEZXRhaWxzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/OrderDetails/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJEZXRhaWxzL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/OrderDetails/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJEZXRhaWxzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Orders/Checkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL0NoZWNrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Orders/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Orders/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Orders/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Orders/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Orders/EmployeeIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL0VtcGxveWVlSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Orders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Orders/ShoppingCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL1Nob3BwaW5nQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reorders/AutoReorder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVvcmRlcnMvQXV0b1Jlb3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reorders/History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVvcmRlcnMvSGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reorders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVvcmRlcnMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reorders/ViewDraft.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVvcmRlcnMvVmlld0RyYWZ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reports/BooksSold.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9Cb29rc1NvbGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reports/Customers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9DdXN0b21lcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reports/EmployeeReviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9FbXBsb3llZVJldmlld3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reports/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reports/Inventory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9JbnZlbnRvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reports/Orders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9PcmRlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reports/Totals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9Ub3RhbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reports/_FilterPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVwb3J0cy9fRmlsdGVyUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/AllReviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9BbGxSZXZpZXdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/ApproveReviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9BcHByb3ZlUmV2aWV3cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/BooksReviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9Cb29rc1Jldmlld3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/ReviewSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9SZXZpZXdTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Reviews/ToReview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmV2aWV3cy9Ub1Jldmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/RoleAdmin/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZUFkbWluL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/RoleAdmin/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZUFkbWluL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/RoleAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZUFkbWluL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Seed/Confirm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VlZC9Db25maXJtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Seed/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VlZC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/ShippingConfig/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hpcHBpbmdDb25maWcvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/ShippingConfig/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hpcHBpbmdDb25maWcvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/ShippingConfig/DeleteConfirmed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hpcHBpbmdDb25maWcvRGVsZXRlQ29uZmlybWVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/ShippingConfig/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hpcHBpbmdDb25maWcvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/ShippingConfig/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hpcHBpbmdDb25maWcvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/ShippingConfig/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hpcHBpbmdDb25maWcvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/samantharaine/Documents/GitHub/Group-23 12.28.24 PM/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

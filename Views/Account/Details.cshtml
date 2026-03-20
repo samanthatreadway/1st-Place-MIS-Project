@@ -1,0 +1,92 @@
+@model fa25group23final.Models.EditAccount
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!--<h1>Details</h1>
+
+<div>
+    <h4>EditAccount</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">-->
+            @*@Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>*@
+        <!--<dt class="col-sm-2">-->
+            @*@Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>*@
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ID)
+        </dd>*@
+    <!--</dl>
+</div>
+<div>-->
+    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+    <!--<a asp-action="Index">Back to List</a>
+</div>-->
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg p-4" style="max-width: 700px; width: 100%; border-radius: 1rem;">
+
+        <h2 class="text-center mb-4" style="font-weight: 600;">Account Details</h2>
+        <hr />
+
+        <dl class="row mt-4">
+            <dt class="col-sm-4 text-muted">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd class="col-sm-8">
+                <strong>@Html.DisplayFor(model => model.FirstName)</strong>
+            </dd>
+
+            <dt class="col-sm-4 text-muted mt-3">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class="col-sm-8 mt-3">
+                <strong>@Html.DisplayFor(model => model.LastName)</strong>
+            </dd>
+
+            <dt class="col-sm-4 text-muted mt-3">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd class="col-sm-8 mt-3">
+                <strong>@Html.DisplayFor(model => model.PhoneNumber)</strong>
+            </dd>
+
+            <dt class="col-sm-4 text-muted mt-3">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-8 mt-3">
+                <strong>@Html.DisplayFor(model => model.Address)</strong>
+            </dd>
+        </dl>
+
+        <div class="mt-4 text-center">
+            <a asp-controller="Home" asp-action="UserDashboard" class="btn btn-secondary px-4 py-2" style="border-radius: .5rem;">
+                Back to List
+            </a>
+        </div>
+
+    </div>
+</div>

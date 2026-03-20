@@ -1,0 +1,126 @@
+@model fa25group23final.Models.ReportFilters
+
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">
+            <i class="bi bi-funnel"></i> Filters
+        </h5>
+    </div>
+    <div class="card-body">
+        <form method="get" id="filterForm">
+            <div class="row">
+                <!-- Date Range -->
+                @if (ViewBag.ShowDateFilter ?? true)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="StartDate" class="form-label"></label>
+                        <input asp-for="StartDate" class="form-control" type="date" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="EndDate" class="form-label"></label>
+                        <input asp-for="EndDate" class="form-control" type="date" />
+                    </div>
+                }
+
+                <!-- Sort By -->
+                @if (ViewBag.SortOptions != null)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="SortBy" class="form-label"></label>
+                        <select asp-for="SortBy" class="form-select" asp-items="ViewBag.SortOptions"></select>
+                    </div>
+                }
+
+                <!-- Customer Filter -->
+                @if (ViewBag.Customers != null)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="CustomerId" class="form-label"></label>
+                        <select asp-for="CustomerId" class="form-select" asp-items="ViewBag.Customers">
+                            <option value="">-- All Customers --</option>
+                        </select>
+                    </div>
+                }
+
+                <!-- Book Filter -->
+                @if (ViewBag.Books != null)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="BookId" class="form-label"></label>
+                        <select asp-for="BookId" class="form-select" asp-items="ViewBag.Books">
+                            <option value="">-- All Books --</option>
+                        </select>
+                    </div>
+                }
+
+                <!-- Genre Filter -->
+                @if (ViewBag.Genres != null)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="GenreId" class="form-label"></label>
+                        <select asp-for="GenreId" class="form-select" asp-items="ViewBag.Genres">
+                            <option value="">-- All Genres --</option>
+                        </select>
+                    </div>
+                }
+
+                <!-- Employee Filter -->
+                @if (ViewBag.Employees != null)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="EmployeeId" class="form-label"></label>
+                        <select asp-for="EmployeeId" class="form-select" asp-items="ViewBag.Employees">
+                            <option value="">-- All Employees --</option>
+                        </select>
+                    </div>
+                }
+
+                <!-- Status Filter (for Report F) -->
+                @if (ViewBag.StatusOptions != null)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="ReviewStatus" class="form-label"></label>
+                        <select asp-for="ReviewStatus" class="form-select" asp-items="ViewBag.StatusOptions"></select>
+                    </div>
+                }
+
+                <!-- Price Range -->
+                @if (ViewBag.ShowPriceFilter ?? false)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="MinPrice" class="form-label"></label>
+                        <input asp-for="MinPrice" class="form-control" type="number" step="0.01" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="MaxPrice" class="form-label"></label>
+                        <input asp-for="MaxPrice" class="form-control" type="number" step="0.01" />
+                    </div>
+                }
+
+                <!-- Profit Margin Range -->
+                @if (ViewBag.ShowProfitFilter ?? false)
+                {
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="MinProfitMargin" class="form-label"></label>
+                        <input asp-for="MinProfitMargin" class="form-control" type="number" step="0.01" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="MaxProfitMargin" class="form-label"></label>
+                        <input asp-for="MaxProfitMargin" class="form-control" type="number" step="0.01" />
+                    </div>
+                }
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search"></i> Apply Filters
+                    </button>
+                    <a href="@Url.Action(ViewContext.RouteData.Values["action"].ToString())" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Clear Filters
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

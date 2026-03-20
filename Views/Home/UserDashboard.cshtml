@@ -1,0 +1,57 @@
+﻿
+
+<div class="row g-4 mt-4">
+
+
+    <div class="row g-4">
+
+        <!-- View Account Details -->
+        <div class="col-md-4">
+            <div class="p-3 border rounded bg-light h-100">
+                <h5>Your Account</h5>
+                <p class="text-muted small">
+                    View your profile information and account status.
+                </p>
+
+                <a asp-controller="Account"
+                   asp-action="Details"
+                   class="btn btn-primary w-100">
+                    View Account Details
+                </a>
+            </div>
+        </div>
+
+        <!-- Edit Account Information -->
+        <div class="col-md-4">
+            <div class="p-3 border rounded bg-light h-100">
+                <h5>Edit Account</h5>
+                <p class="text-muted small">
+                    Update your address, phone number, or personal information.
+                </p>
+
+                <a asp-controller="Account"
+                   asp-action="Edit"
+                   class="btn btn-secondary w-100">
+                    Edit Account Info
+                </a>
+            </div>
+        </div>
+
+        <!-- Change Password -->
+        <div class="col-md-4">
+            <div class="p-3 border rounded bg-light h-100">
+                <h5>Security</h5>
+                <p class="text-muted small">
+                    Change your password to keep your account secure.
+                </p>
+
+                <a asp-controller="Account"
+                   asp-action="ChangePassword"
+                   class="btn btn-warning w-100">
+                    Change Password
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

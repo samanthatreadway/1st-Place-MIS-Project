@@ -1,0 +1,734 @@
+﻿@model IEnumerable<fa25group23final.Models.Coupon>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+@*<div class="text-center">
+    <h1>Welcome to Bevo's Books!</h1>
+
+    <img src="~/images/Library.jpg"
+         alt="UT Library"
+         style="width: 100%; max-width: 900px; margin: 20px auto; border-radius: 10px; display:block;" />
+
+    <div style="margin-top: 20px;">
+        <a asp-action="Index" asp-controller="Books" class="btn btn-success">View Our Books</a>*@
+
+@*@if (User.Identity.IsAuthenticated)
+            {
+                <a asp-action="Index" asp-controller="Orders" class="btn btn-info">View Orders</a>
+
+                @if (User.IsInRole("Employee") || User.IsInRole("Admin"))
+                {
+                    <a asp-action="Index" asp-controller="Reviews" class="btn btn-danger">View Reviews</a>
+                    <a asp-action="Index" asp-controller="RoleAdmin" class="btn btn-warning">Manage Users</a>
+
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Index" asp-controller="Coupon" class="btn btn-danger">View Coupons</a>
+                    <a asp-action="AdminDashboard" asp-controller="Home" class="btn btn-warning">Employee Dashboard</a>
+                }
+            }
+        </div>
+    </div>*@
+
+
+<div class="hero-section d-flex align-items-center justify-content-center text-center">
+    <div class="overlay"></div>
+    <div class="hero-content text-white">
+        @if (ViewBag.CustomerFullName != null)
+        {
+            <h1 class="display-4 fw-bold mb-4">Welcome, @ViewBag.CustomerFullName, to Bevo's Books!</h1>
+        }
+        else
+        {
+            <h1 class="display-4 fw-bold mb-4">Welcome to Bevo's Books!</h1>
+        }
+        <p class="lead mb-4">Explore our collection and manage your orders with ease.</p>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            @*<a asp-action="Index" asp-controller="Books" class="btn btn-success btn-lg">View Our Books</a>*@
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                @*<a asp-action="Index" asp-controller="Orders" class="btn btn-info btn-lg">View Orders</a>*@
+
+                @if (User.IsInRole("Employee") || User.IsInRole("Admin"))
+                {
+                    @*<a asp-action="Index" asp-controller="Reviews" class="btn btn-danger btn-lg">View Reviews</a>*@
+                    @*<a asp-action="Index" asp-controller="RoleAdmin" class="btn btn-warning btn-lg">Manage Users</a>*@
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    @*<a asp-action="AdminDashboard" asp-controller="Home" class="btn btn-primary btn-lg">Employee Dashboard</a>*@
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@* CUSTOMER-ONLY, DATABASE-DRIVEN COUPON SECTION *@
+@if (User.Identity.IsAuthenticated && User.IsInRole("Customer") && Model != null && Model.Any())
+{
+    <div class="promo-section py-4 bg-warning text-dark">
+        <div class="container text-center">
+            <h2 class="h4 mb-2">Coupon Codes</h2>
+
+            @foreach (var coupon in Model)
+            {
+                <p class="mb-1">
+                    @if (coupon.CouponType == fa25group23final.Models.CouponTypeEnum.Discount)
+                    {
+                        @($"Use code {coupon.CouponCode} to get {coupon.DiscountPercent}% off your order!")
+                    }
+                    else if (coupon.CouponType == fa25group23final.Models.CouponTypeEnum.FreeShipping)
+                    {
+                        @($"Use code {coupon.CouponCode} for free shipping on orders over ${coupon.FreeThreshold}!")
+                    }
+                </p>
+            }
+
+            <p class="mb-0">
+                Apply your coupon at checkout to save!
+            </p>
+        </div>
+    </div>
+
+    <style>
+        .promo-section {
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
+        }
+    </style>
+}
+
+
+<!-- Call-to-Action Section -->
+<div class="cta-section text-center py-5 bg-light">
+    <a asp-action="Index" asp-controller="Books" class="btn btn-dark btn-lg shadow-lg cta-btn">
+        View Our Books
+    </a>
+</div>
+
+<style>
+    .cta-section {
+        /* Optional: subtle background gradient for elegance */
+        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .cta-btn {
+        padding: 1.25rem 2.5rem;
+        font-size: 1.75rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+        .cta-btn:hover {
+            background-color: #212529; /* darker shade on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+</style>
+
+
+
+
+
+
+<!-- Mission / About Us Section -->
+<div class="mission-section py-5 bg-white">
+    <div class="container">
+        <h2 class="text-center mb-5">Who We Are</h2>
+        <div class="row justify-content-center">
+            <!-- Story / Mission -->
+            <div class="col-md-8 text-center">
+                <h4>Our Story</h4>
+                <p>
+                    Bevo's Books was founded with the goal of creating a community for book lovers of all kinds.
+                    We believe in the power of stories to educate, inspire, and connect people across generations.
+                    Our mission is to provide a curated selection of books and a seamless online experience for every reader.
+                </p>
+
+                <h4 class="mt-4">Our Mission</h4>
+                <p>
+                    To deliver a welcoming and engaging bookstore experience online, connecting readers with
+                    the stories they love and providing tools to review, share, and manage their collections efficiently.
+                </p>
+                <a asp-controller="Home" asp-action="MeetTheTeam" class="btn btn-primary btn-lg">
+                    Meet the Team
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .mission-section h2,
+    .mission-section h4,
+    .mission-section p {
+        text-align: center;
+    }
+
+    .mission-section h2 {
+        font-weight: 700;
+    }
+
+    .mission-section h4 {
+        font-weight: 600;
+        margin-top: 1rem;
+        color: #212529;
+    }
+
+    .mission-section p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #495057;
+    }
+
+    .mission-section a:hover {
+        text-decoration: underline;
+        color: #0d6efd;
+    }
+</style>
+
+
+
+
+
+<!-- Featured Books Section -->
+<div class="featured-books-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Featured Books</h2>
+        <div class="row g-4 justify-content-center">
+
+            <!-- Top 3 Most Popular Books -->
+            <!-- Book 1 - The Other Queen by Philippa Gregory -->
+            <div class="col-6 col-md-3">
+                <div class="book-card position-relative">
+                    <img src="~/images/Queen.jpg"
+                         asp-append-version="true"
+                         class="img-fluid rounded shadow-sm"
+                         alt="The Other Queen by Philippa Gregory">
+
+                    <div class="book-overlay d-flex align-items-center justify-content-center text-center px-2">
+                        <span class="text-white fw-bold">
+                            The Other Queen<br />
+                            <small>by Philippa Gregory</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2 - Reckless by Selena Montgomery -->
+            <div class="col-6 col-md-3">
+                <div class="book-card position-relative">
+                    <img src="~/images/Reckless.jpg"
+                         asp-append-version="true"
+                         class="img-fluid rounded shadow-sm"
+                         alt="Reckless by Selena Montgomery">
+
+                    <div class="book-overlay d-flex align-items-center justify-content-center text-center px-2">
+                        <span class="text-white fw-bold">
+                            Reckless<br />
+                            <small>by Selena Montgomery</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 3 - Wrecked by Anna Davies -->
+            <div class="col-6 col-md-3">
+                <div class="book-card position-relative">
+                    <img src="~/images/Wreck.jpg"
+                         asp-append-version="true"
+                         class="img-fluid rounded shadow-sm"
+                         alt="Wrecked by Anna Davies">
+
+                    <div class="book-overlay d-flex align-items-center justify-content-center text-center px-2">
+                        <span class="text-white fw-bold">
+                            Wrecked<br />
+                            <small>by Anna Davies</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .featured-books-section h2 {
+        font-weight: 700;
+    }
+
+    .book-card {
+        overflow: hidden;
+        border-radius: 12px;
+    }
+
+        .book-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover img {
+            transform: scale(1.05);
+        }
+
+    .book-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.35);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .book-card:hover .book-overlay {
+        opacity: 1;
+    }
+
+    .book-overlay span {
+        font-size: 1rem;
+    }
+</style>
+
+<div class="anonymous-dashboard-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">See Reviews</h2>
+        <div class="row justify-content-center g-4">
+
+
+            <!-- Write Review -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm text-center">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">See all Reviews</h5>
+                        <p class="card-text">Learn what our other readers are enjoing!</p>
+                        <a asp-controller="Reviews" asp-action="AllReviews" class="btn btn-primary">See Reviews</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .anonymous-dashboard-section h2 {
+        font-weight: 600;
+    }
+
+    .anonymous-dashboard-section .card {
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .anonymous-dashboard-section .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+    .anonymous-dashboard-section .btn {
+        border-radius: 8px;
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+    }
+</style>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="user-dashboard-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Your Account</h2>
+            <div class="row justify-content-center g-4">
+
+
+                <!-- Manage Account -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Manage Account</h5>
+                            <p class="card-text">Update your personal information and preferences.</p>
+                            <a asp-controller="Home" asp-action="UserDashboard" class="btn btn-warning">Manage Account</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .user-dashboard-section h2 {
+            font-weight: 600;
+        }
+
+        .user-dashboard-section .card {
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .user-dashboard-section .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            }
+
+        .user-dashboard-section .btn {
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+        }
+    </style>
+}
+
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+{
+    <div class="user-dashboard-section py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5">Customer Tools</h2>
+            <div class="row justify-content-center g-4">
+
+                <!-- Write Review -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Manage Your Reviews</h5>
+                            <p class="card-text">Share your thoughts about books you've purchased.</p>
+                            <a asp-controller="Reviews" asp-action="Index" class="btn btn-primary">Manage Reviews</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View Orders -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">View Orders</h5>
+                            <p class="card-text">Check your order history and track your shipments.</p>
+                            <a asp-controller="Orders" asp-action="Index" class="btn btn-secondary">View Orders</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Credit Cards -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Manage Credit Cards</h5>
+                            <p class="card-text">Add, remove, and update your saved payment methods.</p>
+                            <a asp-controller="CreditCard" asp-action="Index" class="btn btn-success">
+                                Manage Credit Cards
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .user-dashboard-section h2 {
+            font-weight: 600;
+        }
+
+        .user-dashboard-section .card {
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .user-dashboard-section .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            }
+
+        .user-dashboard-section .btn {
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+        }
+    </style>
+}
+
+
+
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="admin-dashboard-section py-5 bg-secondary text-white">
+        <div class="container">
+            <h2 class="text-center mb-5">Admin & Employee Tools</h2>
+            <div class="row justify-content-center g-4">
+
+                <!-- Manage Users -->
+                @*<div class="col-md-4">
+                <div class="card h-100 shadow-sm text-center bg-dark text-white">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Manage Users</h5>
+                        <p class="card-text">Add, edit, or remove user accounts in the system.</p>
+                        <a asp-controller="RoleAdmin" asp-action="Index" class="btn btn-warning">Manage Users</a>
+                    </div>
+                </div>
+                </div>*@
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center bg-dark text-white">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Manage Customers</h5>
+                            <p class="card-text">View, search, and manage all customers in the system.</p>
+                            <a asp-controller="Account" asp-action="ManageCustomers" class="btn btn-warning">Manage Customers</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center bg-dark text-white">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Admin Dashboard</h5>
+                            <p class="card-text">Access reports and employee-specific management tools.</p>
+                            <a asp-controller="Home" asp-action="AdminDashboard" class="btn btn-primary">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Manage All Employees -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center bg-dark text-white">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Manage Employees</h5>
+                            <p class="card-text">
+                                View, search, and manage all employees in the system.
+                            </p>
+                            <a asp-controller="Account"
+                               asp-action="ManageEmployees"
+                               class="btn btn-secondary">
+                                Manage Employees
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .admin-dashboard-section h2 {
+            font-weight: 600;
+        }
+
+        .admin-dashboard-section .card {
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .admin-dashboard-section .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+            }
+
+        .admin-dashboard-section .btn {
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+        }
+    </style>
+}
+
+@if (User.IsInRole("Employee"))
+{
+    <div class="employee-dashboard-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Employee Tools</h2>
+            <div class="row justify-content-center g-4">
+
+                <!-- Box 1 -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Employee Dashboard</h5>
+                            <p class="card-text">Access Employee Tools</p>
+                            <a asp-controller="Home" asp-action="EmployeeDashboard" class="btn btn-primary">Employee Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Employee Account -->
+                @*<div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">My Employee Account</h5>
+                            <p class="card-text">
+                                Update your street address, phone number, and password.
+                            </p>
+
+                            <a asp-controller="Account"
+                               asp-action="Edit"
+                               class="btn btn-primary">
+                                Manage My Account
+                            </a>
+                        </div>
+                    </div>
+                </div>*@
+
+                <!-- My Employee Account -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm text-center">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Manage Customers</h5>
+                            <p class="card-text">
+                                List customer accounts and manage profiles.
+                            </p>
+
+                            <a asp-controller="Account"
+                               asp-action="ManageCustomers"
+                               class="btn btn-primary">
+                                Manage Customer Accounts
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .employee-dashboard-section h2 {
+            font-weight: 600;
+        }
+
+        .employee-dashboard-section .card {
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .employee-dashboard-section .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            }
+
+        .employee-dashboard-section .btn {
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+        }
+    </style>
+}
+
+
+
+
+
+
+<style>
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: url('@Url.Content("~/images/Library.jpg")') center/cover no-repeat;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dark overlay for readability */
+.hero-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    z-index: 1;
+}
+
+/* Content on top of overlay */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.hero-content p {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+</style>
+
+
+<!-- Contact Us Section -->
+<div class="contact-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Contact Us</h2>
+        <div class="row justify-content-center g-4">
+
+            <!-- Contact Info -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Get in Touch</h5>
+                        <p><strong>Email:</strong> support@bevosbooks.com</p>
+                        <p><strong>Phone:</strong> (512) 123-4567</p>
+                        <p><strong>Address:</strong> 123 Campus Drive, Austin, TX 78712</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .contact-section h2 {
+        font-weight: 700;
+    }
+
+    .contact-section .card {
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .contact-section .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+    .contact-section .btn {
+        border-radius: 8px;
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+</style>
+
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white py-4">
+    <div class="container text-center">
+        <p class="mb-1">&copy; @DateTime.Now.Year Bevo's Books. All rights reserved.</p>
+        <p class="mb-0">
+            <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+            <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+        </p>
+    </div>
+</footer>
+
+<style>
+    .footer a:hover {
+        color: #ffc107; /* subtle hover effect */
+        text-decoration: underline;
+    }
+</style>

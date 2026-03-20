@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Review Submitted";
+}
+
+<!DOCTYPE html>
+
+
+<style>
+    /* Full-page background image */
+    .background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/bevo.jpeg'); /* replace with your image path */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1; /* behind everything */
+    }
+
+    /* Card overlay with blur */
+    .card-overlay {
+        background-color: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        margin: 5rem auto; /* centers card horizontally and adds top margin */
+    }
+
+        .card-overlay h1 {
+            margin-bottom: 1rem;
+        }
+
+        .card-overlay p {
+            font-size: 1.1rem;
+        }
+</style>
+
+<!-- Full-page background -->
+<div class="background-container"></div>
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card text-center shadow-sm p-4">
+                <h1 class="mb-3">Thank You!</h1>
+                <p>Your review is being processed. We appreciate your feedback!</p>
+                <a asp-action="Index" asp-controller="Books" class="btn btn-primary mt-3">Return Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<body>
+        <div class="card">
+            <h1>Thank You!</h1>
+            <p>Your review is being processed. We appreciate your feedback!</p>
+            <a asp-action="Index" asp-controller="Books" class="btn btn-primary mt-3">Return Home</a>
+        </div>
+    </body>R
+    </html>*@

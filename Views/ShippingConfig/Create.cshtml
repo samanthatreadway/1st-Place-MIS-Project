@@ -1,0 +1,51 @@
+﻿@model fa25group23final.Models.Shippingconfig
+
+@{
+    ViewData["Title"] = "Create Shipping Settings";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">Create Shipping Configuration</h3>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Create" asp-controller="ShippingConfig" method="post">
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="FirstBookFee" class="form-label"></label>
+                    <input asp-for="FirstBookFee" class="form-control" />
+                    <span asp-validation-for="FirstBookFee" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AdditionalBookFee" class="form-label"></label>
+                    <input asp-for="AdditionalBookFee" class="form-control" />
+                    <span asp-validation-for="AdditionalBookFee" class="text-danger"></span>
+                </div>
+
+                <!-- Always create new shipping configs as Active -->
+                <input type="hidden" asp-for="IsActive" value="true" />
+
+                <!-- Required because UpdatedBy is non-nullable -->
+                <input type="hidden" asp-for="UpdatedBy" value="System" />
+
+                <button type="submit" class="btn btn-primary">
+                    Save Shipping Settings
+                </button>
+
+                <a asp-action="Index" asp-controller="ShippingConfig" class="btn btn-secondary ms-2">
+                    Back to List
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

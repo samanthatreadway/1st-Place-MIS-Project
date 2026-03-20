@@ -1,0 +1,351 @@
+@model fa25group23final.Models.Orders
+
+@{
+    var recs = ViewBag.RecommendedBooks as List<fa25group23final.Models.Books>;
+}
+
+@{
+    ViewData["Title"] = $"Order #{Model.OrderID}";
+
+    // Get calculated totals from ViewBag (calculated by OrderCalculationService)
+    decimal subtotal = ViewBag.Subtotal ?? 0m;
+    int itemCount = ViewBag.ItemCount ?? 0;
+    decimal shippingFee = ViewBag.ShippingFee ?? 0m;
+    decimal discountAmount = ViewBag.DiscountAmount ?? 0m;
+    decimal total = ViewBag.Total ?? 0m;
+    string creditCardDisplay = ViewBag.CreditCardDisplay ?? "Not selected";
+}
+
+<div class="container my-4">
+    @* Header *@
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2><i class="fas fa-receipt"></i> Order #@Model.OrderID</h2>
+            <p class="text-muted mb-0">
+                @if (Model.OrderDate.HasValue)
+                {
+                    <text>Placed on @Model.OrderDate.Value.ToString("MMMM dd, yyyy 'at' h:mm tt")</text>
+                }
+                else
+                {
+                    <text>Order in progress (not yet completed)</text>
+                }
+            </p>
+        </div>
+        <div>
+            @if (Model.OrderStatus)
+            {
+                <span class="badge bg-success fs-6">
+                    <i class="fas fa-check-circle"></i> Order Completed
+                </span>
+            }
+            else
+            {
+                <span class="badge bg-warning text-dark fs-6">
+                    <i class="fas fa-shopping-cart"></i> In Cart
+                </span>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        @* Left Column - Order Information *@
+        <div class="col-lg-8">
+
+            @* Shipping Address Card *@
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-shipping-fast"></i> Shipping Information</h5>
+                </div>
+                <div class="card-body">
+                    <h6 class="mb-2">Ship to:</h6>
+                    <address class="mb-3">
+                        <strong>@Model.customerID.FirstName @Model.customerID.LastName</strong><br />
+                        @if (!string.IsNullOrEmpty(Model.ShippingAddress))
+                        {
+                            @* Handle both single-line and multi-line addresses *@
+                            @foreach (var line in Model.ShippingAddress.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+                            {
+                                @line.Trim()
+                                <br />
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted">No address on file</span>
+                        }
+                    </address>
+                    <small class="text-muted">
+                        <i class="fas fa-envelope"></i> @Model.customerID.Email
+                    </small>
+                </div>
+            </div>
+
+            @* Payment Information Card *@
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-credit-card"></i> Payment Information</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">
+                        <i class="fas fa-credit-card text-primary"></i>
+                        <strong>@creditCardDisplay</strong>
+                    </p>
+                </div>
+            </div>
+
+            @* Coupon Information Card (if applicable) *@
+            @if (Model.couponID != null)
+            {
+                <div class="card mb-4 border-success">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-tag"></i> Coupon Applied</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-1">
+                            <strong>Code:</strong> @Model.couponID.CouponCode
+                        </p>
+                        <p class="mb-0 text-success">
+                            <i class="fas fa-check-circle"></i>
+                            @if (Model.couponID.CouponType == CouponTypeEnum.Discount)
+                            {
+                                <text>@Model.couponID.DiscountPercent% off subtotal</text>
+                            }
+                            else if (Model.couponID.CouponType == CouponTypeEnum.FreeShipping)
+                            {
+                                @if (Model.couponID.FreeThreshold.HasValue)
+                                {
+                                    <text>Free shipping (order over @Model.couponID.FreeThreshold.Value.ToString("C"))</text>
+                                }
+                                else
+                                {
+                                    <text>Free shipping</text>
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
+            }
+
+            @* Order Items Card *@
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-book"></i> Order Items
+                        <span class="badge bg-light text-dark">@itemCount</span>
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Book</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-end">Price</th>
+                                    <th class="text-end">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderDetails)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-book fa-2x text-primary me-3"></i>
+                                                <div>
+                                                    <h6 class="mb-0">@item.bookID.Title</h6>
+                                                    <small class="text-muted">by @item.bookID.Authors</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span class="badge bg-secondary">@item.Quantity</span>
+                                        </td>
+                                        <td class="text-end align-middle">
+                                            @item.Price.ToString("C")
+                                        </td>
+                                        <td class="text-end align-middle">
+                                            <strong>@((item.Price * item.Quantity).ToString("C"))</strong>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            @* ==================== RECOMMENDED BOOKS CARD ==================== *@
+            @if (recs != null && recs.Any())
+            {
+                <div class="card mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-lightbulb"></i> You Might Also Like
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">
+                            Based on the books in this order, we think you may enjoy:
+                        </p>
+
+                        <div class="row">
+                            @foreach (var book in recs)
+                            {
+                                <div class="col-md-4 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        <div class="card-body d-flex flex-column">
+                                            <h6 class="card-title">@book.Title</h6>
+                                            <p class="card-text mb-1">
+                                                <small class="text-muted">by @book.Authors</small>
+                                            </p>
+                                            @if (book.genre != null)
+                                            {
+                                                <p class="card-text mb-2">
+                                                    <small class="badge bg-secondary">
+                                                        @book.genre.GenreName
+                                                    </small>
+                                                </p>
+                                            }
+                                            <div class="mt-auto">
+                                                <a asp-controller="Books"
+                                                   asp-action="Details"
+                                                   asp-route-id="@book.BookID"
+                                                   class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-info-circle"></i> View Details
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            @* ================== END RECOMMENDED BOOKS CARD ================== *@
+
+        </div>
+
+        @* Right Column - Order Summary *@
+        <div class="col-lg-4">
+            <div class="sticky-top" style="top: 20px;">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0"><i class="fas fa-calculator"></i> Order Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        @* Subtotal *@
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal (@itemCount item@(itemCount != 1 ? "s" : "")):</span>
+                            <span>@subtotal.ToString("C")</span>
+                        </div>
+
+                        @* Shipping *@
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping:</span>
+                            <span>@shippingFee.ToString("C")</span>
+                        </div>
+
+                        @* Discount *@
+                        @if (discountAmount > 0)
+                        {
+                            <div class="d-flex justify-content-between mb-2 text-success">
+                                <span>
+                                    <i class="fas fa-tag"></i> Discount:
+                                    @if (Model.couponID != null)
+                                    {
+                                        <br />
+                                        <small>(@Model.couponID.CouponCode)</small>
+                                    }
+                                </span>
+                                <span>-@discountAmount.ToString("C")</span>
+                            </div>
+                        }
+
+                        <hr />
+
+                        @* Total *@
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-0">Total:</h5>
+                            <h5 class="mb-0 text-primary">@total.ToString("C")</h5>
+                        </div>
+
+                        @* Savings Badge *@
+                        @if (discountAmount > 0)
+                        {
+                            <div class="alert alert-success mt-3 mb-0">
+                                <i class="fas fa-piggy-bank"></i>
+                                You saved <strong>@discountAmount.ToString("C")</strong>!
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                @* Order Status Info *@
+                <div class="card mt-3">
+                    <div class="card-body">
+                        @if (Model.OrderStatus)
+                        {
+                            <div class="text-center">
+                                <i class="fas fa-check-circle fa-3x text-success mb-2"></i>
+                                <h6>Order Completed</h6>
+                                <p class="text-muted mb-0">
+                                    <small>Your order has been placed and is on its way!</small>
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <i class="fas fa-shopping-cart fa-3x text-warning mb-2"></i>
+                                <h6>Order in Cart</h6>
+                                <p class="text-muted mb-2">
+                                    <small>This order is still in your shopping cart.</small>
+                                </p>
+                                <a asp-action="ShoppingCart" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-arrow-right"></i> Complete Checkout
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Action Buttons *@
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Order History
+    </a>
+
+
+    @if (Model.OrderStatus)
+    {
+        <button class="btn btn-outline-primary" onclick="window.print()">
+            <i class="fas fa-print"></i> Print Order
+        </button>
+    }
+</div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto-dismiss alerts
+    </script>
+}
+
+<style>
+    @@media print {
+        .btn, .sticky-top {
+            display: none !important;
+        }
+
+        .card {
+            border: 1px solid #dee2e6 !important;
+            page-break-inside: avoid;
+        }
+    }
+</style>

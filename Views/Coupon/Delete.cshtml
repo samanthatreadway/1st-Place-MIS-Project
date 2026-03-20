@@ -1,0 +1,98 @@
+@model fa25group23final.Models.Coupon
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@*<h1>Delete</h1>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Coupon</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CouponCode)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CouponCode)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CouponType)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CouponType)
+            </dd>*@
+@*<dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.DiscountPercent)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.DiscountPercent)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.FreeThreshold)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FreeThreshold)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CouponID" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>*@
+
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow p-4" style="max-width: 600px; width: 100%; border-radius: 12px;">
+
+        <h2 class="text-center mb-3 text-danger">Delete Coupon</h2>
+
+        <p class="text-center mb-4">
+            Are you sure you want to <strong>permanently delete</strong> this coupon?
+        </p>
+
+        <h5 class="text-secondary mb-3">Coupon Details</h5>
+        <hr />
+
+        <dl class="row mb-4">
+            <dt class="col-sm-4">Coupon Code</dt>
+            <dd class="col-sm-8">@Model.CouponCode</dd>
+
+            <dt class="col-sm-4">Coupon Type</dt>
+            <dd class="col-sm-8">@Model.CouponType</dd>
+
+            <dt class="col-sm-4">Discount %</dt>
+            <dd class="col-sm-8">@Model.DiscountPercent</dd>
+
+            <dt class="col-sm-4">Free Threshold</dt>
+            <dd class="col-sm-8">@Model.FreeThreshold</dd>
+
+            <dt class="col-sm-4">Active</dt>
+            <dd class="col-sm-8">@Model.Status</dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CouponID" />
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-danger px-4">
+                    Delete
+                </button>
+
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                    Cancel
+                </a>
+            </div>
+        </form>
+
+    </div>
+</div>

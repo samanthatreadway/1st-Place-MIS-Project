@@ -1,0 +1,167 @@
+﻿@model fa25group23final.Models.Books
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    body {
+        position: relative;
+        min-height: 100vh;
+    }
+
+    /* Blurred full-page background */
+    .blurred-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/inside.jpg'); /* change this */
+        background-size: cover;
+        background-position: center;
+        filter: blur(8px);
+        z-index: -1; /* keeps background behind everything */
+    }
+</style>
+
+<div class="blurred-bg"></div>
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+
+        <h4 class="card-title mb-3">@Model.Title</h4>
+        <hr />
+
+        <dl class="row">
+
+            <dt class="col-sm-3 text-muted">Book Number</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.BookNumber)</dd>
+
+            <dt class="col-sm-3 text-muted">Genre</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.genre.GenreName)</dd>
+
+            <dt class="col-sm-3 text-muted">Description</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.BookDescription)</dd>
+
+            <dt class="col-sm-3 text-muted">Price</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.BookPrice)</dd>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <dt class="col-sm-3 text-muted">Cost</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(m => m.BookCost)</dd>
+
+                <dt class="col-sm-3 text-muted">Avg Profit Margin</dt>
+                <dd class="col-sm-9">
+                    @if (ViewBag.AverageProfitMargin != null)
+                    {
+                        var profitMargin = (decimal)ViewBag.AverageProfitMargin;
+                        <span class="text">
+                            @profitMargin.ToString("C2")
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">No sales data</span>
+                    }
+                </dd>
+            }
+
+            <dt class="col-sm-3 text-muted">Publish Date</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.PublishDate)</dd>
+
+            <dt class="col-sm-3 text-muted">Inventory</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.InventoryQuantity)</dd>
+
+            <dt class="col-sm-3 text-muted">Rating</dt>
+            @*<dd class="col-sm-9">@Html.DisplayFor(m => m.AverageRating)</dd>*@
+            <dd class="col-sm-9">@Model.AverageRating.ToString("0.0")</dd>
+
+
+            @if (User.IsInRole("Admin"))
+            {
+                <dt class="col-sm-3 text-muted">Reorder Point</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(m => m.ReorderPoint)</dd>
+            }
+
+            <dt class="col-sm-3 text-muted">Authors</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Authors)</dd>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <dt class="col-sm-3 text-muted">Status</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(m => m.BookStatus)</dd>
+            }
+        </dl>
+
+        @* ============================
+        CART MESSAGE (already in cart)
+        ============================ *@
+        @if (User.IsInRole("Customer") && (ViewBag.AlreadyInCart as bool? == true))
+        {
+            <div class="alert alert-info mb-3">
+                This book is already in your cart. Adding it again will increase the quantity.
+            </div>
+        }
+
+        @if (User.IsInRole("Customer") && @Model.InventoryQuantity == 0)
+        {
+            <div class="alert alert-info mb-3">
+                This Book is out of Stock
+            </div>
+        }
+
+
+        @* ============================
+        ACTION BUTTONS
+        ============================ *@
+    <div class="d-flex gap-2">
+
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Edit"
+               asp-route-id="@Model.BookID"
+               class="btn btn-warning">
+                Edit
+            </a>
+
+            <form asp-controller="Reorders" asp-action="AddToDraft" method="post" class="d-inline">
+                <input type="hidden" name="bookId" value="@Model.BookID" />
+                <input type="hidden" name="quantity" value="5" />
+                <input type="hidden" name="cost" value="@Model.BookCost" />
+                <button type="submit" class="btn btn-primary">Reorder</button>
+            </form>
+            <a asp-controller="Reorders"
+               asp-action="ViewDraft"
+               class="btn btn-outline-secondary">
+                View Reorder Cart
+            </a>
+        }
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Back to List
+        </a>
+
+        <a asp-action="BooksReviews" asp-controller="Reviews" asp-route-id="@Model.BookID" class="btn btn-sm btn-info">Current Reviews</a>
+
+        @if (User.IsInRole("Customer"))
+        {
+            <a asp-action="AddToCart"
+               asp-controller="Orders"
+               asp-route-bookId="@Model.BookID"
+               class="btn btn-success">
+                Add to Cart
+            </a>
+
+            <a asp-action="Create"
+               asp-controller="Reviews"
+               asp-route-id="@Model.BookNumber"
+               class="btn btn-primary ms-2">
+                Write a Review
+            </a>
+        }
+
+    </div>
+
+    </div>
+</div>

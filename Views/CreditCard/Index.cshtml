@@ -1,0 +1,135 @@
+@model IEnumerable<fa25group23final.Models.CreditCard>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
+@*<h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CardID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CardNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CardType)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CardID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CardNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CardType)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CardID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CardID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CardID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+<h1 class="mb-4">Manage your Credit Cards</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mb-4">Add New Card</a>
+</p>
+<div class="row g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card shadow-sm credit-card-card h-100">
+                <div class="card-body position-relative">
+
+                    <!-- Card ID in top right -->
+                    <div class="card-id-tag">
+                        ID: @item.CardID
+                    </div>
+
+                    <h5 class="card-title">@item.CardType</h5>
+
+                    <!-- Spacing before card number -->
+                    <p class="card-text mt-4">
+                        <strong>Card Number:</strong><br />
+                        @item.CardNumber
+                    </p>
+
+                    <div class="mt-3 d-flex justify-content-between">
+                        <a asp-action="Edit" asp-route-id="@item.CardID" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.CardID" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.CardID" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .credit-card-card {
+        border-radius: 15px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+        .credit-card-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .credit-card-card .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .credit-card-card .card-text {
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+    .credit-card-card {
+        border-radius: 15px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        /* 🔥 Background image */
+        background-image: url('/images/cardbackground.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* Slight overlay to increase readability */
+        position: relative;
+        overflow: hidden;
+    }
+
+        .credit-card-card .card-body {
+            background: rgba(255, 255, 255, 0.75); /* translucent white layer */
+            border-radius: 12px;
+            padding: 1rem;
+        }
+</style>

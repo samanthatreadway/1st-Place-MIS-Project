@@ -1,0 +1,59 @@
+﻿@model IEnumerable<fa25group23final.Models.Books>
+
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle shadow-sm">
+        <thead class="table-light">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.BookNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <th>@Html.DisplayNameFor(model => model.BookDescription)</th>
+                <th>@Html.DisplayNameFor(model => model.Authors)</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="clickable-row" data-href="@Url.Action("Details", "Books", new { id = item.BookID })" style="cursor:pointer;">
+                    <td>@Html.DisplayFor(modelItem => item.BookNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BookDescription)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BookPrice)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Authors)</td>
+
+
+                    <td class="text-center">
+                        <div class="btn-group" role="group">
+                            <a asp-action="Create" asp-controller="Reviews" asp-route-id="@item.BookNumber" class="btn btn-sm btn-info">Review this Book</a>
+
+                            <a asp-controller="Books" asp-action="Details" asp-route-id="@item.BookID" class="btn btn-sm btn-secondary">Details</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+
+        document.querySelectorAll(".clickable-row").forEach(row => {
+
+            row.addEventListener("click", function (e) {
+
+                // If the click was on a button or link, do not trigger row navigation
+                if (e.target.closest("a") || e.target.closest("button")) {
+                    return;
+                }
+
+                window.location = this.dataset.href;
+            });
+        });
+    });</script>
+
+
+
+
+

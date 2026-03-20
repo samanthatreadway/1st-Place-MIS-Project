@@ -1,0 +1,185 @@
+@model fa25group23final.Models.BooksSoldReportViewModel
+@{
+    ViewData["Title"] = "All Books Sold Report";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5">
+                <i class="bi bi-book"></i> All Books Sold Report
+            </h1>
+            <p class="text-muted">Transaction-level detail for every book sold</p>
+            <hr />
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <partial name="_FilterPartial" model="Model.Filters" />
+
+    <!-- Summary Stats -->
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <h6 class="card-subtitle mb-2 text-muted">Total Records</h6>
+                    <h3 class="card-title mb-0">@Model.TotalRecords</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <h6 class="card-subtitle mb-2 text-muted">Total Items Sold</h6>
+                    <h3 class="card-title mb-0">@Model.Results.Sum(r => r.Quantity)</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <h6 class="card-subtitle mb-2 text-muted">Page @Model.CurrentPage of @Model.TotalPages</h6>
+                    <h3 class="card-title mb-0">@Model.Results.Count rows</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <h6 class="card-subtitle mb-2 text-muted">Generated</h6>
+                    <h3 class="card-title mb-0">@Model.ReportGeneratedAt.ToString("hh:mm tt")</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Report Results</h5>
+        </div>
+        <div class="card-body p-0">
+            @if (Model.Results.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date</th>
+                                <th>Book Title</th>
+                                <th>Qty</th>
+                                <th>Customer</th>
+                                <th class="text-end">Selling Price</th>
+                                <th class="text-end">Avg Cost</th>
+                                <th class="text-end">Profit Margin</th>
+                                <th class="text-end">Margin %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var row in Model.Results)
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="badge bg-secondary">@row.OrderNumber</span>
+                                    </td>
+                                    <td>@row.OrderDate.ToString("MM/dd/yyyy")</td>
+                                    <td>
+                                        <strong>@row.BookTitle</strong>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-info">@row.Quantity</span>
+                                    </td>
+                                    <td>@row.CustomerName</td>
+                                    <td class="text-end">@row.SellingPrice.ToString("C")</td>
+                                    <td class="text-end text-muted">@row.WeightedAvgCost.ToString("C")</td>
+                                    <td class="text-end">
+                                        <strong class="@(row.ProfitAmount >= 0 ? "text-success" : "text-danger")">
+                                            @row.ProfitAmount.ToString("C")
+                                        </strong>
+                                    </td>
+                                    <td class="text-end">
+                                        <span class="badge @(row.ProfitMarginPercent >= 0 ? "bg-success" : "bg-danger")">
+                                            @row.ProfitMarginPercent.ToString("F2")%
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info m-3">
+                    <i class="bi bi-info-circle"></i> No records found matching the selected criteria.
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    @if (Model.TotalPages > 1)
+    {
+        <nav aria-label="Report pagination" class="mt-3">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(!Model.HasPreviousPage ? "disabled" : "")">
+                    <a class="page-link" 
+                       href="@Url.Action("BooksSold", new { 
+                           PageNumber = Model.CurrentPage - 1,
+                           Model.Filters.StartDate,
+                           Model.Filters.EndDate,
+                           Model.Filters.SortBy,
+                           Model.Filters.CustomerId,
+                           Model.Filters.BookId,
+                           Model.Filters.GenreId
+                       })">
+                        Previous
+                    </a>
+                </li>
+
+                @for (int i = Math.Max(1, Model.CurrentPage - 2); i <= Math.Min(Model.TotalPages, Model.CurrentPage + 2); i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a class="page-link" 
+                           href="@Url.Action("BooksSold", new { 
+                               PageNumber = i,
+                               Model.Filters.StartDate,
+                               Model.Filters.EndDate,
+                               Model.Filters.SortBy,
+                               Model.Filters.CustomerId,
+                               Model.Filters.BookId,
+                               Model.Filters.GenreId
+                           })">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                <li class="page-item @(!Model.HasNextPage ? "disabled" : "")">
+                    <a class="page-link" 
+                       href="@Url.Action("BooksSold", new { 
+                           PageNumber = Model.CurrentPage + 1,
+                           Model.Filters.StartDate,
+                           Model.Filters.EndDate,
+                           Model.Filters.SortBy,
+                           Model.Filters.CustomerId,
+                           Model.Filters.BookId,
+                           Model.Filters.GenreId
+                       })">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    }
+
+    <!-- Back Button -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Reports Dashboard
+            </a>
+        </div>
+    </div>
+</div>

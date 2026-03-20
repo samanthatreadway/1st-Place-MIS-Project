@@ -1,0 +1,120 @@
+@model IEnumerable<fa25group23final.Models.Coupon>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@*<h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CouponCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CouponType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiscountPercent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FreeThreshold)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CouponCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CouponType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiscountPercent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FreeThreshold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CouponID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CouponID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CouponID">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
+
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Coupons</h2>
+        <a asp-action="Create" class="btn btn-success">
+            Create New
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CouponCode)</th>
+                    <th>@Html.DisplayNameFor(model => model.CouponType)</th>
+                    <th>@Html.DisplayNameFor(model => model.DiscountPercent)</th>
+                    <th>@Html.DisplayNameFor(model => model.FreeThreshold)</th>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No coupons available</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CouponCode</td>
+                            <td>@item.CouponType</td>
+                            <td>@item.DiscountPercent</td>
+                            <td>@item.FreeThreshold</td>
+                            <td>
+                                @if (item.Status)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inactive</span>
+                                }
+                            </td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.CouponID" class="btn btn-sm btn-primary me-1">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.CouponID" class="btn btn-sm btn-info me-1">Details</a>
+                                @*<a asp-action="Delete" asp-route-id="@item.CouponID" class="btn btn-sm btn-danger">Delete</a>*@
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

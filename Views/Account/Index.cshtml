@@ -1,0 +1,79 @@
+﻿@model IndexViewModel
+@{
+    ViewBag.Title = "Change Password";
+}
+
+@*<h2>@ViewBag.Title.</h2>
+
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>User Name:</dt>
+        <dd>@Model.UserName</dd>
+
+        <dt>Email:</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>Email:</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>Password:</dt>
+        <dd>
+            [@Html.ActionLink("Change your password", "ChangePassword")]
+        </dd>
+    </dl>
+</div>*@
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg p-4" style="max-width: 650px; width: 100%; border-radius: 1rem;">
+
+        <h2 class="text-center mb-4" style="font-weight: 600;">
+            @ViewBag.Title
+        </h2>
+        <h5 class="text-center text-muted mb-4">Change your account settings</h5>
+
+        <hr />
+
+        <dl class="row mt-4">
+
+            <dt class="col-sm-4 text-muted">
+                User Name
+            </dt>
+            <dd class="col-sm-8">
+                <strong>@Model.UserName</strong>
+            </dd>
+
+            <dt class="col-sm-4 text-muted mt-3">
+                Email
+            </dt>
+            <dd class="col-sm-8 mt-3">
+                <strong>@Model.Email</strong>
+            </dd>
+
+            <dt class="col-sm-4 text-muted mt-3">
+                Password
+            </dt>
+            <dd class="col-sm-8 mt-3">
+                <a class="btn btn-primary btn-sm px-3 py-2"
+                   style="border-radius: .5rem;"
+                   href="@Url.Action("ChangePassword")">
+                    Change your password
+                </a>
+            </dd>
+
+        </dl>
+        @if ((User.Identity.IsAuthenticated) && (User.IsInRole("Customer")))
+        {
+            <div class="text-center mt-4">
+                <a asp-controller="CreditCard" asp-action="Index" class="btn btn-success" style="border-radius:.5rem;">Manage Credit Cards</a>
+            </div>
+        }
+        <div class="text-center mt-4">
+            <a asp-action="Index" class="btn btn-secondary px-4 py-2" style="border-radius:.5rem;">
+                Back to Account
+            </a>
+        </div>
+
+    </div>
+</div>

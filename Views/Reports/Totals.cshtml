@@ -1,0 +1,222 @@
+@model fa25group23final.Models.TotalsReportViewModel
+@{
+    ViewData["Title"] = "Totals Report";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5">
+                <i class="bi bi-currency-dollar"></i> Totals Report
+            </h1>
+            <p class="text-muted">High-level business summary</p>
+            <hr />
+        </div>
+    </div>
+
+    <!-- Optional Date Range Filter -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning">
+            <h5 class="mb-0">
+                <i class="bi bi-funnel"></i> Optional Date Range
+            </h5>
+        </div>
+        <div class="card-body">
+            <form method="get">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label asp-for="Filters.StartDate" class="form-label"></label>
+                        <input asp-for="Filters.StartDate" class="form-control" type="date" />
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Filters.EndDate" class="form-label"></label>
+                        <input asp-for="Filters.EndDate" class="form-control" type="date" />
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-warning me-2">
+                            <i class="bi bi-search"></i> Apply Filters
+                        </button>
+                        <a asp-action="Totals" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Clear
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Big Number Cards -->
+    <div class="row g-4 mb-4">
+        <!-- Total Revenue -->
+        <div class="col-md-4">
+            <div class="card h-100 border-primary shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-graph-up-arrow display-1 text-primary"></i>
+                    <h5 class="card-title mt-3 text-muted">Total Revenue</h5>
+                    <h1 class="display-3 text-primary">@Model.TotalRevenue.ToString("C2")</h1>
+                    <p class="text-muted mb-0">
+                        <small>From @Model.TotalRecords completed transactions</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Cost -->
+        <div class="col-md-4">
+            <div class="card h-100 border-danger shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-cart-dash display-1 text-danger"></i>
+                    <h5 class="card-title mt-3 text-muted">Total Cost</h5>
+                    <h1 class="display-3 text-danger">@Model.TotalCost.ToString("C2")</h1>
+                    <p class="text-muted mb-0">
+                        <small>Weighted average costs</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Profit -->
+        <div class="col-md-4">
+            <div class="card h-100 border-success shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-cash-coin display-1 text-success"></i>
+                    <h5 class="card-title mt-3 text-muted">Total Profit</h5>
+                    <h1 class="display-3 text-success">@Model.TotalProfit.ToString("C2")</h1>
+                    <p class="text-muted mb-0">
+                        <small>Revenue minus cost</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profit Margin Card -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-info shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted">Overall Profit Margin</h5>
+                    <h1 class="display-2 text-info">
+                        @Model.ProfitMarginPercent.ToString("F2")%
+                    </h1>
+                    <p class="text-muted mb-0">
+                        Calculated as (Total Profit / Total Revenue) × 100
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breakdown Table -->
+    <div class="card">
+        <div class="card-header bg-warning">
+            <h5 class="mb-0">Detailed Breakdown</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th class="w-50">Total Revenue</th>
+                        <td class="text-end">
+                            <strong class="text-primary fs-5">@Model.TotalRevenue.ToString("C")</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Total Cost</th>
+                        <td class="text-end">
+                            <strong class="text-danger fs-5">- @Model.TotalCost.ToString("C")</strong>
+                        </td>
+                    </tr>
+                    <tr class="table-success">
+                        <th>Total Profit</th>
+                        <td class="text-end">
+                            <strong class="text-success fs-4">= @Model.TotalProfit.ToString("C")</strong>
+                        </td>
+                    </tr>
+                    <tr class="table-info">
+                        <th>Profit Margin</th>
+                        <td class="text-end">
+                            <strong class="text-info fs-4">@Model.ProfitMarginPercent.ToString("F2")%</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Total Transactions</th>
+                        <td class="text-end">
+                            <strong>@Model.TotalRecords</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Average Revenue per Transaction</th>
+                        <td class="text-end">
+                            @if (Model.TotalRecords > 0)
+                            {
+                                <strong>@((Model.TotalRevenue / Model.TotalRecords).ToString("C"))</strong>
+                            }
+                            else
+                            {
+                                <strong>$0.00</strong>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Average Profit per Transaction</th>
+                        <td class="text-end">
+                            @if (Model.TotalRecords > 0)
+                            {
+                                <strong class="text-success">@((Model.TotalProfit / Model.TotalRecords).ToString("C"))</strong>
+                            }
+                            else
+                            {
+                                <strong>$0.00</strong>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Info Alert -->
+    <div class="alert alert-info mt-4">
+        <h5 class="alert-heading">
+            <i class="bi bi-info-circle"></i> Report Notes
+        </h5>
+        <ul class="mb-0">
+            <li><strong>Revenue:</strong> Total selling price × quantity from all completed orders</li>
+            <li><strong>Cost:</strong> Weighted average cost × quantity</li>
+            <li><strong>Profit:</strong> Revenue minus Cost</li>
+            <li><strong>Profit Margin:</strong> (Profit / Revenue) × 100</li>
+            <li><strong>Shipping fees are excluded</strong> from all calculations (cost-neutral)</li>
+            @if (Model.Filters.StartDate.HasValue || Model.Filters.EndDate.HasValue)
+            {
+                <li class="text-primary">
+                    <strong>Filtered by date range:</strong>
+                    @if (Model.Filters.StartDate.HasValue)
+                    {
+                        @:From @Model.Filters.StartDate.Value.ToString("MM/dd/yyyy")
+                    }
+                    @if (Model.Filters.EndDate.HasValue)
+                    {
+                        @:To @Model.Filters.EndDate.Value.ToString("MM/dd/yyyy")
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+
+    <!-- Report Info -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <p class="text-muted">
+                <small>
+                    <i class="bi bi-clock"></i> Generated: @Model.ReportGeneratedAt.ToString("MM/dd/yyyy hh:mm:ss tt")
+                </small>
+            </p>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Reports Dashboard
+            </a>
+        </div>
+    </div>
+</div>

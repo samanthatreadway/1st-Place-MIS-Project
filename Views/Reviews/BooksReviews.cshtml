@@ -1,0 +1,40 @@
+﻿@model IEnumerable<fa25group23final.Models.Reviews>
+
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+<h2>All Reviews</h2>
+<hr />
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Rating</th>
+            <th>Review Text</th>
+            <th>Reviewer</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.bookID?.Title
+                </td>
+                <td>
+                    @item.Rating
+                </td>
+                <td>
+                    @item.ReviewText
+                </td>
+                <td>
+                    @item.reviewer?.FirstName @item.reviewer?.LastName
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

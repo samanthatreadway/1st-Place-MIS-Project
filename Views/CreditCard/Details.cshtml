@@ -1,0 +1,91 @@
+@model fa25group23final.Models.CreditCard
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@*<h1>Details</h1>
+
+    <div>
+        <h4>CreditCard</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CardNumber)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CardNumber)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CardType)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CardType)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.CardID">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+<h1 class="mb-4 text-center">Credit Card Details</h1>
+
+<div class="d-flex justify-content-center">
+    <div class="card shadow-sm details-card p-4">
+        <div class="card-body">
+
+            <h4 class="text-center mb-4">Card Information</h4>
+            <hr />
+
+            <div class="mb-3">
+                <strong>Card Number:</strong>
+                <p class="mt-1">@Html.DisplayFor(model => model.CardNumber)</p>
+            </div>
+
+            <div class="mb-4">
+                <strong>Card Type:</strong>
+                <p class="mt-1">@Html.DisplayFor(model => model.CardType)</p>
+            </div>
+
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <a asp-action="Edit"
+                   asp-route-id="@Model?.CardID"
+                   class="btn btn-warning px-4">
+                    Edit
+                </a>
+
+                <a asp-action="Index" class="btn btn-secondary px-4">
+                    Back to List
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .details-card {
+        max-width: 450px;
+        width: 100%;
+        border-radius: 15px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+        .details-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+        }
+
+        .details-card p {
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .details-card .btn {
+            border-radius: 8px;
+            padding: 0.6rem 1.3rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+</style>

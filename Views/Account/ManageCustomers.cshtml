@@ -1,0 +1,100 @@
+@model IEnumerable<fa25group23final.Models.AppUser>
+
+@{
+    ViewData["Title"] = "ManageCustomers";
+}
+
+<!--<h1>ManageEmployees</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    -->
+@*@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "EmployeeEdit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "EmployeeDetails", new { id = item.Id })-->
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
+
+
+
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h1 class="h3">Manage Customers</h1>
+                            <a asp-action="RegisterCustomer" class="btn btn-success">Create New</a>
+                        </div>
+
+                        <div class="card shadow-sm">
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                                            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                                            <th>Active</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                                <td>
+                                                    @(item.Status ? "Active" : "Inactive")
+                                                </td>
+                                                <td class="text-center">
+                                                    <a asp-action="CustomerEdit" asp-route-id="@item.Id" class="btn btn-sm btn-primary me-1">Edit</a>
+                                                    <a asp-action="CustomerDetails" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white">Details</a>
+                                                    @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>*@
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

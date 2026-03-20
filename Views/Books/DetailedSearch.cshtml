@@ -1,0 +1,206 @@
+@model fa25group23final.Models.SearchViewModel
+
+@using fa25group23final.Models;
+
+@{
+    ViewData["Title"] = "DetailedSearch";
+}
+
+@*<h1>DetailedSearch</h1>
+
+    <h4>SearchViewModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="DisplaySearchResults" asp-controller="Books">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Desc" class="control-label"></label>
+                    <input asp-for="Desc" class="form-control" />
+                    <span asp-validation-for="Desc" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="priceComparison" class="control-label"></label><br />
+                    <input type="radio" class="radio" asp-for="priceComparison" value="@PriceComparisonEnum.greaterThan" />Greater Than<br />
+                    <input type="radio" class="radio" asp-for="priceComparison" value="@PriceComparisonEnum.lessThan" />Less Than<br />
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Genre" class="control-label"></label>
+                    @Html.DropDownListFor(model => model.Genre, (SelectList)ViewBag.AllGenres, new { @class = "form-control" })
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Number" class="control-label"></label>
+                    <input asp-for="Number" class="form-control" />
+                    <span asp-validation-for="Number" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-check-label">
+                        <input asp-for="Stock" class="form-check-input">
+                        @Html.DisplayNameFor(model => model.Stock)
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="userRating" class="control-label"></label>
+                    <input asp-for="userRating" class="form-control" />
+                    <span asp-validation-for="userRating" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Rating" class="control-label"></label><br />
+                    <input type="radio" class="radio" asp-for="Rating" value="@RatingComparisonEnum.greaterThan" />Greater Than<br />
+                    <input type="radio" class="radio" asp-for="Rating" value="@RatingComparisonEnum.lessThan" />Less Than<br />
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+
+            <h1 class="text-center mb-4">Detailed Search</h1>
+            <hr />
+
+            <form asp-action="DisplaySearchResults" asp-controller="Books">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- Title -->
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <!-- Author -->
+                <div class="mb-3">
+                    <label asp-for="Author" class="form-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label asp-for="Desc" class="form-label"></label>
+                    <input asp-for="Desc" class="form-control" />
+                    <span asp-validation-for="Desc" class="text-danger"></span>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+
+                    <!-- Price comparison -->
+                    <div class="form-check form-check-inline mt-2">
+                        <input class="form-check-input" type="radio" asp-for="priceComparison" value="@PriceComparisonEnum.greaterThan" id="priceGt">
+                        <label class="form-check-label" for="priceGt">Greater Than</label>
+                    </div>
+                    <div class="form-check form-check-inline mt-2">
+                        <input class="form-check-input" type="radio" asp-for="priceComparison" value="@PriceComparisonEnum.lessThan" id="priceLt">
+                        <label class="form-check-label" for="priceLt">Less Than</label>
+                    </div>
+                </div>
+
+                <!-- Date -->
+                <div class="mb-3">
+                    <label asp-for="Date" class="form-label"></label>
+                    <input asp-for="Date" class="form-control" type="date" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <!-- Genre -->
+                <div class="mb-3">
+                    <label asp-for="Genre" class="form-label"></label>
+                    @Html.DropDownListFor(model => model.Genre, (SelectList)ViewBag.AllGenres, new { @class = "form-select" })
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+
+                <!-- Book Number -->
+                <div class="mb-3">
+                    <label asp-for="Number" class="form-label"></label>
+                    <input asp-for="Number" class="form-control" />
+                    <span asp-validation-for="Number" class="text-danger"></span>
+                </div>
+
+                <!-- In Stock -->
+                <div class="form-check form-switch mb-3">
+                    <input asp-for="Stock" class="form-check-input" id="StockSwitch">
+                    <label class="form-check-label" for="StockSwitch">@Html.DisplayNameFor(model => model.Stock)</label>
+                </div>
+
+                <!-- User Rating -->
+                <div class="mb-3">
+                    <label asp-for="userRating" class="form-label"></label>
+                    <input asp-for="userRating" class="form-control" />
+                    <span asp-validation-for="userRating" class="text-danger"></span>
+                </div>
+
+                <!-- Rating comparison -->
+                <div class="mb-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Rating" value="@RatingComparisonEnum.greaterThan" id="ratingGt">
+                        <label class="form-check-label" for="ratingGt">Greater Than</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Rating" value="@RatingComparisonEnum.lessThan" id="ratingLt">
+                        <label class="form-check-label" for="ratingLt">Less Than</label>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                </div>
+
+                <!-- Back link -->
+                <div class="text-center">
+                    <a asp-action="Index" class="btn btn-link">Back to List</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

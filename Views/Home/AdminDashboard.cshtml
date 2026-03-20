@@ -1,0 +1,189 @@
+﻿
+@*@model AccountViewModels*@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">Admin Dashboard</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <!-- Register Employee -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Register New Employee</h5>
+                        <p class="text-muted small">Add a brand new employee to the system.</p>
+
+                        <a asp-controller="Account"
+                           asp-action="RegisterEmployee"
+                           class="btn btn-primary w-100">
+                            Register Employee
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Manage Employees -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Manage All Employees</h5>
+                        <p class="text-muted small">View, search, and manage employees.</p>
+
+                        <a asp-controller="Account"
+                           asp-action="ManageEmployees"
+                           class="btn btn-secondary w-100">
+                            Manage Employees
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Manage Customers -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Manage Customers</h5>
+                        <p class="text-muted small">
+                            Create and modify customers, and enable or disable accounts.
+                        </p>
+
+                        <a asp-controller="Account"
+                           asp-action="ManageCustomers"
+                           class="btn btn-secondary w-100">
+                            Manage Customers
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Coupons</h5>
+                        <p class="text-muted small">View and manage all system-wide coupons.</p>
+
+                        <a asp-controller="Coupon"
+                           asp-action="Index"
+                           class="btn btn-danger w-100">
+                            View Coupons
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Approve / Reject Reviews -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Review Approval</h5>
+                        <p class="text-muted small">
+                            Approve or reject pending customer reviews
+                        </p>
+
+                        <a asp-controller="Reviews"
+                           asp-action="ApproveReviews"
+                           class="btn btn-warning w-100">
+                            Approve / Reject Reviews
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Manage Books -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Manage Books</h5>
+                        <p class="text-muted small">
+                            Add, edit, or remove books from the catalog
+                        </p>
+
+                        <a asp-controller="Books"
+                           asp-action="Index"
+                           class="btn btn-primary w-100">
+                            Manage Books
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Book Procurement -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Book Procurement</h5>
+                        <p class="text-muted small">
+                            Order new inventory or restock low-quantity items
+                        </p>
+
+                        <a asp-controller="Reorders"
+                           asp-action="Index"
+                           class="btn btn-success w-100">
+                            Book Procurement
+                        </a>
+                    </div>
+                </div>
+
+                <!-- View Reports -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>View Reports</h5>
+                        <p class="text-muted small">
+                            Analyze sales, inventory, and customer activity reports
+                        </p>
+
+                        <a asp-controller="Reports"
+                           asp-action="Index"
+                           class="btn btn-info w-100">
+                            View Reports
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Shipping Settings -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Shipping Settings</h5>
+                        <p class="text-muted small">
+                            Update the first book fee and additional book fee.
+                        </p>
+
+                        <a asp-controller="ShippingConfig"
+                           asp-action="Index"
+                           class="btn btn-outline-primary w-100">
+                            Manage Shipping Prices
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Manage Own Account -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded bg-light h-100">
+                        <h5>Manage Account</h5>
+                        <p class="text-muted small">Manage your account information.</p>
+
+                        <a asp-controller="Home"
+                           asp-action="UserDashboard"
+                           class="btn btn-info w-100">
+                            Manage Account
+                        </a>
+                    </div>
+                </div>
+
+                @*Manage Roles, Promote Employees*@
+                @*<div class="col-md-6">
+            <div class="p-3 border rounded bg-light h-100">
+                <h5>Manage All Roles</h5>
+                <p class="text-muted small">Add and remove users to/from different roles.</p>
+
+                <a asp-controller="RoleAdmin"
+                   asp-action="Index"
+                   class="btn btn-warning w-100">
+                    Manage Roles
+                </a>
+            </div>
+        </div>*@
+
+            </div>
+
+        </div>
+    </div>
+</div>
